@@ -14,7 +14,7 @@
 #include <nds.h>
 #include "../libft/libft.h"
 #include <stdio.h>
-#include "VanDRKholme.h"
+#include "moon.h"
 
 void	initbg(void)
 {
@@ -73,17 +73,19 @@ void	initbg(void)
 
 void	displayholm(void)
 {
-	dmaCopyHalfWords(3, VanDRKholmePal, (uint16 *)BG_BMP_RAM(0), VanDRKholmePalLen);
+	dmaCopyHalfWords(3, moonPal, (uint16 *)BG_BMP_RAM(0), moonPalLen);
 }
 
 void	initvideo(void)
 {
-	vramSetMainBanks(VRAM_A_MAIN_BG_0x06000000,
-					VRAM_B_MAIN_BG_0x06020000,
-					VRAM_C_SUB_BG_0x06200000,
-					VRAM_D_LCD);
-	videoSetMode(MODE_5_2D | DISPLAY_BG2_ACTIVE | DISPLAY_BG3_ACTIVE);
-	videoSetModeSub(MODE_5_2D | DISPLAY_BG2_ACTIVE);
+	vramSetMainBanks(VRAM_A_MAIN_BG_0x06000000, VRAM_B_MAIN_BG_0x06020000, VRAM_C_SUB_BG_0x06200000, VRAM_D_LCD);
+	videoSetMode(MODE_5_2D | // Set the graphics mode to Mode 5
+                 DISPLAY_BG2_ACTIVE | // Enable BG2 for display
+                 DISPLAY_BG3_ACTIVE); //Enable BG3 for display
+
+    /*  Set the video mode on the sub screen. */
+    videoSetModeSub(MODE_5_2D | // Set the graphics mode to Mode 5
+                    DISPLAY_BG3_ACTIVE); // Enable BG3 for display
 }
 
 int		main(int ac, char **av)
