@@ -22,9 +22,10 @@ include $(DEVKITARM)/ds_rules
 # the makefile is found.
 #
 #---------------------------------------------------------------------------------
-TARGET		:=	$(notdir $(CURDIR))
+#TARGET		:=	$(notdir $(CURDIR))
+TARGET		:=	test
 BUILD		:=	build
-SOURCES		:=	src
+SOURCES		:=	src libft
 DATA		:=	
 INCLUDES	:=	include
 GRAPHICS	:=	gfx

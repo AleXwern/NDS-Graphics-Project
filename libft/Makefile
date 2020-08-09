@@ -6,7 +6,7 @@
 #    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 16:09:13 by anystrom          #+#    #+#              #
-#    Updated: 2020/02/11 13:47:13 by anystrom         ###   ########.fr        #
+#    Updated: 2020/01/21 15:19:32 by anystrom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,13 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
+	@mv $(OBJS) ../obj
+	@mv $(NAME) ../obj
 
 clean:
-	@/bin/rm -f $(OBJS)
+	@/bin/rm -f $(addprefix $(OBJFLD),$(OBJS))
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	@/bin/rm -f $(addprefix $(OBJFLD),$(NAME))
 
 re: fclean all
